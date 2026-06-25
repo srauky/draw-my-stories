@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Srauky Cai | Draw My Story — Self-Contained Experience</title>
+<style>
+:root{
+  --bg:#080806;
+  --ink:#f5f0e3;
+  --muted:#bbb19e;
+  --gold:#d7b35b;
+  --gold-light:#fff0bd;
+  --gold-deep:#8d6822;
+  --bronze:#705423;
+  --smoke:#746a58;
+  --line:rgba(215,179,91,.26);
+  --panel:rgba(13,12,9,.84);
+}
+*{box-sizing:border-box}
+html{background:var(--bg)}
+body{
+  margin:0;min-height:100vh;color:var(--ink);
+  font-family:Inter,Arial,"Segoe UI",sans-serif;
+  background:
+    radial-gradient(circle at 14% 8%,rgba(186,139,41,.16),transparent 25rem),
+    radial-gradient(circle at 86% 6%,rgba(255,235,178,.07),transparent 24rem),
+    radial-gradient(circle at 55% 84%,rgba(113,78,22,.16),transparent 31rem),
+    linear-gradient(150deg,#060604 0%,#0c0b08 47%,#13100a 100%);
+}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;opacity:.45;
+  background-image:
+    radial-gradient(#fff3c7 1px,transparent 1.25px),
+    radial-gradient(#b8892f 1px,transparent 1.35px);
+  background-size:48px 48px,94px 94px;
+  background-position:0 0,31px 45px;
+  mask-image:linear-gradient(to bottom,#000,transparent 86%);
+}
+.wrap{width:min(1180px,92vw);margin:auto;padding:35px 0 54px;position:relative}
+.hero{display:flex;justify-content:space-between;gap:24px;align-items:flex-start;margin-bottom:21px}
+.eyebrow{
+  font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);
+  font-weight:900;margin-bottom:10px;
+}
+h1{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(2.8rem,7vw,6.1rem);letter-spacing:-.07em;line-height:.9;margin:0;
+}
+h1 span{
+  color:var(--gold-light);
+  text-shadow:0 0 26px rgba(215,179,91,.2);
+  background:linear-gradient(120deg,#fff0bd 0%,#d7b35b 42%,#8d6822 100%);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.brand-signature{display:flex;align-items:center;gap:8px;margin:0 0 13px;color:#e7d5a0;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;font-weight:800}.brand-signature strong{color:#fff1bf}.brand-signature span{color:var(--gold);font-size:1rem}.brand-line{font-family:Georgia,"Times New Roman",serif;color:#fff0bd;font-size:1.14rem;font-style:italic;margin:15px 0 0;letter-spacing:.01em}.lead{max-width:670px;color:var(--muted);line-height:1.7;font-size:1rem;margin:10px 0 0}
+.rarity-legend{display:flex;gap:11px;flex-wrap:wrap;margin-top:13px;font-size:.69rem;letter-spacing:.045em;font-weight:850;text-transform:uppercase}
+.rarity-legend span{padding:6px 9px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.025)}
+.legend-ssr{color:#fff0bd;border-color:rgba(255,226,139,.42)!important;background:rgba(255,209,98,.08)!important}
+.legend-sr{color:#cbeaff;border-color:rgba(99,183,255,.42)!important;background:rgba(65,156,255,.08)!important}
+.legend-r{color:#ffd7dd;border-color:rgba(214,107,121,.42)!important;background:rgba(201,67,85,.08)!important}
+.badge{
+  margin-top:8px;white-space:nowrap;border:1px solid rgba(215,179,91,.46);border-radius:99px;
+  padding:11px 14px;background:linear-gradient(135deg,rgba(255,239,190,.09),rgba(255,255,255,.025));
+  font-size:.77rem;color:#f4e7be;box-shadow:inset 0 0 0 1px rgba(255,255,255,.035);
+}
+.dot{display:inline-block;width:8px;height:8px;border-radius:99px;background:var(--gold);box-shadow:0 0 14px rgba(215,179,91,.95);margin-right:7px}
+
+.experience{
+  position:relative;overflow:hidden;border:1px solid var(--line);border-radius:28px;padding:24px;
+  background:
+    linear-gradient(105deg,rgba(255,239,190,.035),transparent 32%),
+    linear-gradient(145deg,rgba(23,19,12,.95),rgba(7,7,5,.96));
+  box-shadow:0 25px 68px rgba(0,0,0,.58),inset 0 1px 0 rgba(255,244,210,.06);
+}
+.experience:before{
+  content:"";position:absolute;left:0;top:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,237,172,.72),transparent);
+  opacity:.72;
+}
+.experience:after{
+  content:"";position:absolute;width:530px;height:530px;right:-240px;top:-265px;border-radius:50%;
+  background:radial-gradient(circle,rgba(192,145,48,.16),transparent 66%);pointer-events:none;
+}
+.status{position:relative;z-index:3;font-size:.88rem;display:flex;align-items:center;gap:9px;color:#ede4cc}
+.status i{width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 16px rgba(215,179,91,.9)}
+
+.stage{position:relative;min-height:486px;display:grid;place-items:center;overflow:hidden;isolation:isolate}
+.orb{position:absolute;border-radius:50%;border:1px solid rgba(215,179,91,.34);animation:spin 19s linear infinite}
+.orb.a{width:316px;height:316px}
+.orb.b{width:446px;height:446px;border-color:rgba(255,240,189,.12);animation-direction:reverse;animation-duration:29s}
+.orb:after{
+  content:"";position:absolute;width:8px;height:8px;left:52px;top:15px;border-radius:50%;
+  background:var(--gold-light);box-shadow:0 0 18px rgba(255,240,189,.9);
+}
+.orb.b:after{
+  left:auto;top:auto;right:60px;bottom:18px;background:var(--gold);
+  box-shadow:0 0 18px rgba(215,179,91,.85);
+}
+.glow{
+  position:absolute;width:288px;height:288px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,247,219,.88) 0 2%,rgba(215,179,91,.46) 13%,rgba(107,77,25,.13) 40%,transparent 68%);
+  animation:pulse 2.8s ease-in-out infinite;z-index:-1;
+}
+.portal{
+  position:absolute;width:198px;height:198px;border-radius:50%;display:grid;place-items:center;
+  background:conic-gradient(from 180deg,#fff0bd,#c39a44,#513b15,#d7b35b,#fff0bd);
+  box-shadow:0 0 34px rgba(215,179,91,.42),0 0 92px rgba(106,73,18,.34);
+  animation:spin 8s linear infinite;
+}
+.portal:before{content:"";width:176px;height:176px;border-radius:50%;background:#0a0906;box-shadow:inset 0 0 34px #4b3510}
+.portal:after{content:"✦";position:absolute;font-size:4rem;color:var(--gold-light);text-shadow:0 0 24px rgba(255,240,189,.88);animation:spinBack 8s linear infinite}
+
+.slot{position:relative;z-index:3;width:min(365px,84vw);height:430px;display:grid;place-items:center}
+.card{
+  position:absolute;width:310px;height:404px;padding:12px;border-radius:25px;overflow:hidden;cursor:pointer;
+  border:2px solid rgba(215,179,91,.34);
+  background:
+    linear-gradient(145deg,rgba(255,236,178,.08),transparent 35%),
+    linear-gradient(145deg,#1d180e,#0b0a07 75%);
+  box-shadow:0 25px 74px rgba(0,0,0,.62),inset 0 0 0 1px rgba(255,255,255,.055);
+  transition:transform .25s ease,filter .25s ease,opacity .35s ease;
+}
+.card:before{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.38;
+  background:linear-gradient(115deg,transparent 23%,rgba(255,246,211,.18) 43%,transparent 59%);
+  transform:translateX(-145%);transition:transform .9s ease;
+}
+.card:hover{transform:translateY(-5px) scale(1.015)}
+.card:hover:before{transform:translateX(150%)}
+.card.ssr{
+  border-color:#ffe29a;
+  background:
+    linear-gradient(145deg,rgba(255,237,178,.26),transparent 38%),
+    linear-gradient(145deg,#654a14,#171005 76%);
+  box-shadow:0 25px 74px rgba(0,0,0,.64),0 0 42px rgba(255,201,78,.46),inset 0 0 0 1px rgba(255,250,224,.25);
+}
+.card.sr{
+  border-color:#63b7ff;
+  background:
+    linear-gradient(145deg,rgba(104,183,255,.20),transparent 40%),
+    linear-gradient(145deg,#102b54,#070c18 76%);
+  box-shadow:0 25px 74px rgba(0,0,0,.64),0 0 36px rgba(65,156,255,.34),inset 0 0 0 1px rgba(210,238,255,.16);
+}
+.card.r{
+  border-color:#d66b79;
+  background:
+    linear-gradient(145deg,rgba(211,79,98,.17),transparent 40%),
+    linear-gradient(145deg,#3b1119,#100607 76%);
+  box-shadow:0 25px 74px rgba(0,0,0,.64),0 0 28px rgba(201,67,85,.24),inset 0 0 0 1px rgba(255,220,224,.11);
+}
+.card.ssr .rarity,.card.ssr .stars{color:#fff0bd}
+.card.sr .rarity,.card.sr .stars{color:#c9e8ff}
+.card.r .rarity,.card.r .stars{color:#ffd2d8}
+.card.ssr .proof{border-color:rgba(255,226,139,.55);background:rgba(255,209,98,.12);color:#fff0bd}
+.card.sr .proof{border-color:rgba(99,183,255,.55);background:rgba(73,155,255,.12);color:#d9efff}
+.card.r .proof{border-color:rgba(214,107,121,.55);background:rgba(202,64,82,.12);color:#ffd9de}
+.cardtop{display:flex;justify-content:space-between;gap:8px;align-items:center;position:relative;z-index:2}
+.rarity{font-size:.67rem;font-weight:900;letter-spacing:.13em;color:#f1dfab}
+.stars{font-size:.8rem;letter-spacing:.1em;color:var(--gold-light)}
+.photo{height:221px;margin-top:10px;border-radius:15px;overflow:hidden;position:relative;border:1px solid rgba(255,239,190,.2);background:#15120d}
+.photo img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.84) contrast(1.04)}
+.photo:after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(7,6,4,.74),transparent 55%)}
+.caption{position:absolute;z-index:1;bottom:10px;left:11px;right:11px;font-size:.67rem;font-weight:850;letter-spacing:.08em;text-transform:uppercase;text-shadow:0 2px 4px #000;color:#fff0bd}
+.card h2{font-family:Georgia,"Times New Roman",serif;font-size:1.36rem;line-height:1.05;letter-spacing:-.04em;margin:12px 0 7px;color:#fff6d9}
+.card p{font-size:.79rem;line-height:1.5;color:#d2c9b8;margin:0}
+.proof{position:absolute;right:12px;bottom:11px;border:1px solid rgba(215,179,91,.45);border-radius:99px;padding:5px 8px;font-size:.63rem;background:rgba(215,179,91,.1);color:#f6e5b0}
+.placeholder{
+  display:grid;place-items:center;text-align:center;padding:25px;cursor:default;
+  background:
+    radial-gradient(circle at 52% 25%,rgba(225,193,115,.22),transparent 38%),
+    linear-gradient(135deg,#211a0d,#090806 85%);
+}
+.placeholder h2{font-family:Georgia,"Times New Roman",serif;font-size:1.65rem;margin:0 0 12px;color:#fff0bd}
+.placeholder p{font-size:.88rem}.mark{font-size:4.5rem;color:var(--gold-light);text-shadow:0 0 23px rgba(255,215,110,.5);margin-bottom:10px}
+.stack{z-index:1;opacity:0;visibility:hidden;pointer-events:none;transform:scale(.78) translateY(25px) rotate(var(--rot));animation:none!important}
+.result{z-index:3}.idle .result{opacity:0;transform:scale(.7) rotate(-9deg);pointer-events:none}
+.drawing .result{opacity:0;transform:scale(.36) rotate(24deg);filter:brightness(2)}
+.drawing .stack{visibility:visible;opacity:1;animation:shuffle .88s ease-in-out infinite alternate!important}
+.drawing .stack:nth-child(2){animation-delay:.11s}.drawing .stack:nth-child(3){animation-delay:.22s}
+.revealed .stack,.idle .stack{visibility:hidden!important;opacity:0!important;animation:none!important}
+.revealed .result{animation:reveal .8s cubic-bezier(.15,.9,.26,1.35) both}
+.revealed .portal{animation:spin 8s linear infinite,portalOut .95s ease both}
+.burst{position:absolute;inset:0;z-index:8;pointer-events:none}.particle{position:absolute;width:7px;height:15px;border-radius:2px;opacity:0;animation:fall 1.55s ease-out forwards}
+
+.controls{display:flex;justify-content:center;gap:11px;flex-wrap:wrap;position:relative;z-index:5}
+button{border:0;border-radius:15px;padding:14px 19px;color:#160f04;font-weight:950;font-size:.95rem;cursor:pointer;transition:transform .2s ease,filter .2s ease,opacity .2s ease}
+button:hover{transform:translateY(-2px);filter:brightness(1.08)}button:disabled{cursor:not-allowed;opacity:.55;transform:none}
+.draw{background:linear-gradient(135deg,#fff0bd,#d3aa51 53%,#8b651e);box-shadow:0 12px 28px rgba(168,120,31,.37),inset 0 1px 0 rgba(255,255,255,.5)}
+.reset{background:rgba(255,255,255,.045);border:1px solid rgba(215,179,91,.26);color:#eadfca}
+.progress{margin:18px auto 0;max-width:680px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.progress div{padding:9px 10px;border-radius:12px;border:1px solid rgba(215,179,91,.14);background:rgba(0,0,0,.2);font-size:.73rem;line-height:1.36;color:#978d7d}
+.progress div.active{border-color:rgba(215,179,91,.65);background:rgba(215,179,91,.1);color:#fff3d0}
+.progress div.done{border-color:rgba(255,238,179,.56);background:rgba(255,238,179,.08);color:#fff3d0}
+
+.grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;margin-top:22px}
+.panel{
+  border:1px solid var(--line);border-radius:22px;padding:20px;
+  background:linear-gradient(145deg,rgba(26,21,13,.88),rgba(7,7,5,.92));
+  box-shadow:0 17px 42px rgba(0,0,0,.26),inset 0 1px 0 rgba(255,246,219,.04);
+}
+.panel h3{font-family:Georgia,"Times New Roman",serif;margin:0;font-size:1.2rem;color:#fff0bd}
+.help{color:var(--muted);font-size:.82rem;line-height:1.58;margin:7px 0 15px}
+.collection{display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));gap:10px}
+.mini{min-height:113px;border-radius:15px;overflow:hidden;position:relative;border:1px solid rgba(215,179,91,.17);background:#15130f;cursor:pointer;padding:10px}
+.mini.locked{filter:grayscale(1);opacity:.42;cursor:default}.mini img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.45;filter:saturate(.75)}
+.mini:after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(4,4,3,.93),rgba(4,4,3,.07))}
+.mini b,.mini span,.mini i{position:relative;z-index:2;display:block}.mini b{font-size:.73rem;line-height:1.2;color:#fff4d0}.mini span{margin-top:5px;font-size:.64rem;color:#d6cbb6}.mini i{position:absolute;right:9px;bottom:7px;font-style:normal;font-size:1rem;color:var(--gold-light)}
+.mini.ssr{border-color:rgba(255,226,139,.75);box-shadow:inset 0 0 18px rgba(255,201,78,.11)}
+.mini.sr{border-color:rgba(99,183,255,.72);box-shadow:inset 0 0 18px rgba(65,156,255,.10)}
+.mini.r{border-color:rgba(214,107,121,.70);box-shadow:inset 0 0 18px rgba(201,67,85,.09)}
+.statrow{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:15px 0}.stat{border:1px solid rgba(215,179,91,.17);border-radius:13px;padding:11px;background:rgba(255,255,255,.024)}.stat strong{display:block;font-family:Georgia,"Times New Roman",serif;font-size:1.28rem;color:var(--gold-light)}.stat span{font-size:.67rem;line-height:1.3;color:var(--muted);display:block;margin-top:3px}
+.storyline{padding:11px 12px;background:rgba(255,255,255,.025);border-left:3px solid var(--gold);border-radius:0 12px 12px 0;color:#d5cbb9;font-size:.81rem;line-height:1.48;margin-top:9px}.storyline b{color:#fff0bd}
+.note{font-size:.74rem;color:#a99f8e;line-height:1.6;margin:15px 0 0}.brand-cta{margin-top:22px;border:1px solid rgba(215,179,91,.34);border-radius:22px;padding:23px 24px;display:flex;align-items:center;justify-content:space-between;gap:22px;background:linear-gradient(110deg,rgba(255,236,178,.06),rgba(20,16,9,.86) 40%,rgba(6,6,4,.94));box-shadow:0 18px 44px rgba(0,0,0,.27),inset 0 1px 0 rgba(255,246,219,.07)}.brand-cta h2{font-family:Georgia,"Times New Roman",serif;font-size:1.56rem;line-height:1.04;margin:3px 0 8px;color:#fff0bd}.brand-cta p{margin:0;color:#c8bfad;font-size:.82rem;line-height:1.55;max-width:530px}.brand-buttons,.completion-buttons{display:flex;flex-wrap:wrap;gap:9px;justify-content:flex-end}.brand-button,.restart-button{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border-radius:13px;padding:12px 14px;font-size:.78rem;font-weight:900;letter-spacing:.02em;transition:transform .2s ease,filter .2s ease}.brand-button:hover,.restart-button:hover{transform:translateY(-2px);filter:brightness(1.09)}.brand-button.primary{color:#160f04;background:linear-gradient(135deg,#fff0bd,#d3aa51 53%,#8b651e);box-shadow:0 10px 23px rgba(168,120,31,.30),inset 0 1px 0 rgba(255,255,255,.5)}.brand-button.secondary,.restart-button{color:#eadfca;border:1px solid rgba(215,179,91,.30);background:rgba(255,255,255,.04)}.footer{text-align:center;margin-top:24px;color:#918674;font-size:.72rem;line-height:1.6}.completion{position:fixed;z-index:30;inset:0;display:none;place-items:center;padding:20px;background:rgba(0,0,0,.82);backdrop-filter:blur(13px)}.completion.show{display:grid}.completion-box{width:min(520px,94vw);position:relative;text-align:center;border:1px solid rgba(255,225,139,.72);border-radius:28px;padding:43px 30px 31px;overflow:hidden;background:radial-gradient(circle at 50% 8%,rgba(255,226,139,.18),transparent 32%),linear-gradient(145deg,#241b0b,#0b0905 78%);box-shadow:0 30px 100px rgba(0,0,0,.72),0 0 42px rgba(215,179,91,.26),inset 0 1px 0 rgba(255,248,219,.18)}.completion-box:before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,239,190,.9),transparent)}.completion-mark{font-size:4.5rem;line-height:1;color:#fff0bd;text-shadow:0 0 28px rgba(255,224,135,.75);margin-bottom:16px}.completion h2{font-family:Georgia,"Times New Roman",serif;font-size:clamp(2rem,7vw,3.7rem);line-height:.93;letter-spacing:-.055em;margin:10px 0 14px;color:#f5ead0}.completion h2 span{background:linear-gradient(120deg,#fff0bd,#d7b35b,#8b651e);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}.completion p{margin:0;color:#ded3bd;font-size:1rem}.completion-copy{margin-top:8px!important;color:#b9ab91!important;font-size:.85rem!important}.completion-buttons{justify-content:center;margin-top:25px}.completion-close{color:#fff0bd}.restart-button{border:1px solid rgba(215,179,91,.30);cursor:pointer}
+.modal{position:fixed;inset:0;z-index:20;display:none;place-items:center;padding:20px;background:rgba(0,0,0,.8);backdrop-filter:blur(12px)}.modal.show{display:grid}.modalwrap{position:relative}.close{position:absolute;right:-1px;top:-47px;background:transparent;color:#fff0bd;padding:5px 8px;font-size:1.9rem}
+@keyframes spin{to{transform:rotate(360deg)}}@keyframes spinBack{to{transform:rotate(-360deg)}}@keyframes pulse{50%{transform:scale(1.18);opacity:.78}}@keyframes reveal{0%{opacity:0;transform:scale(.12) rotate(-24deg);filter:brightness(3)}58%{opacity:1;transform:scale(1.08) rotate(4deg);filter:brightness(1.5)}100%{opacity:1;transform:scale(1) rotate(0);filter:brightness(1)}}@keyframes portalOut{to{transform:scale(2.4);opacity:0}}@keyframes shuffle{to{transform:translateX(var(--x)) translateY(-12px) rotate(var(--rot))}}@keyframes fall{0%{opacity:0;transform:translate(0,0) rotate(0)}16%{opacity:1}100%{opacity:0;transform:translate(var(--tx),var(--ty)) rotate(520deg)}}
+@media(max-width:760px){.wrap{padding-top:25px}.hero{display:block}.badge{display:inline-block;margin-top:16px}.experience{padding:16px}.stage{min-height:454px}.orb.b{width:365px;height:365px}.orb.a{width:275px;height:275px}.grid{grid-template-columns:1fr}.progress{grid-template-columns:1fr}.card{transform:scale(.94)}.brand-cta{display:block;padding:20px}.brand-buttons{justify-content:flex-start;margin-top:16px}.completion-box{padding:39px 20px 27px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<header class="hero" id="top">
+  <div>
+    <div class="eyebrow">Interactive Personal Brand Portfolio</div>
+    <div class="brand-signature"><strong>SRAUKY CAI</strong><span>·</span> Creative Media Storyteller</div>
+    <h1>DRAW<br><span>MY STORY.</span></h1>
+    <p class="brand-line">Capturing real moments. Turning them into stories.</p>
+    <p class="lead">Every draw reveals a real experience that has shaped my creative journey—curated through media, leadership, collaboration, service, and community.</p>
+    <div class="rarity-legend"><span class="legend-ssr">◆ SSR · Imperial Gold</span><span class="legend-sr">◆ SR · Sapphire Blue</span><span class="legend-r">◆ R · Garnet Red</span></div>
+  </div>
+  <div class="badge"><span class="dot"></span>CURATED LIVE EXPERIENCE</div>
+</header>
+<section class="experience"><div class="status"><i></i><span id="status">Ready to enter the story pool.</span></div><div class="stage idle" id="stage"><div class="glow"></div><div class="orb a"></div><div class="orb b"></div><div class="portal"></div><div class="burst" id="burst"></div><div class="slot"><article class="card stack" style="--x:-92px;--rot:-15deg"></article><article class="card stack" style="--x:89px;--rot:15deg"></article><article class="card stack" style="--x:5px;--rot:4deg"></article><article class="card result placeholder" id="result"><div class="mark">✦</div><h2>Ready to Draw?</h2><p>Each card contains a real record of my learning, work, and contribution.</p></article></div></div><div class="controls"><button class="draw" id="draw">✦ Start Drawing</button><button class="reset" id="reset">Reset Collection</button></div><div class="progress"><div class="active" id="p1">01 · START<br>Enter the story pool</div><div id="p2">02 · REVEAL<br>Generate a real experience card</div><div id="p3">03 · COLLECT<br><span id="count">0 / 13 stories unlocked</span></div></div></section>
+<section class="grid"><section class="panel" id="collection-section"><h3>Experience Collection</h3><p class="help">The draw will not repeat a story until the whole collection is unlocked. Click an unlocked card to revisit its full story.</p><div class="collection" id="collection"></div></section><aside class="panel"><h3>What This Collection Represents</h3><p class="help">This is not a fictional character system. It turns real evidence into an interactive personal-brand experience.</p><div class="statrow"><div class="stat"><strong>13</strong><span>real stories in the draw pool</span></div><div class="stat"><strong>4</strong><span>core areas: media, events, collaboration, community</span></div><div class="stat"><strong>1</strong><span>Vice-Chancellor's Award</span></div></div><div class="storyline"><b>Creative media:</b> event recording, videography leadership, documentary camera practice, and on-camera production.</div><div class="storyline"><b>People and collaboration:</b> team preparation, academic presentations, cross-cultural participation, and peer learning.</div><div class="storyline"><b>Purpose beyond the classroom:</b> professional volunteering and community service.</div><p class="note">Original draw-card visual language and interaction logic. No official game characters, logos, screens, or assets are used.</p></aside></section>
+<section class="brand-cta brand-statement" id="brand-links">
+  <div>
+    <div class="eyebrow">Beyond The Draw</div>
+    <h2>One person. Thirteen real moments.</h2>
+    <p>These cards are not separate achievements. Together, they show how I learn, create, collaborate, contribute, and keep growing.</p>
+  </div>
+</section>
+<p class="footer">Every fresh page opening starts with an empty collection. Click “Start Drawing” to experience the full interactive process. The collection is saved only in this browser and can be reset at any time.</p>
+</main>
+<div class="modal" id="modal"><div class="modalwrap"><button class="close" id="close" aria-label="Close">×</button><article class="card" id="modalcard" style="position:relative;transform:none;opacity:1;cursor:default;margin:auto"></article></div></div>
+
+<div class="completion" id="completion">
+  <div class="completion-box">
+    <button class="close completion-close" id="closeCompletion" aria-label="Close">×</button>
+    <div class="completion-mark">✦</div>
+    <div class="eyebrow">The Final Reveal</div>
+    <h2>FULL COLLECTION<br><span>UNLOCKED.</span></h2>
+    <p>13 real moments. One evolving story.</p>
+    <p class="completion-copy">Thank you for drawing my story.</p>
+    <div class="completion-buttons">
+      <a class="brand-button primary" href="#collection-section" id="viewCollection">View Collection</a>
+      <button class="restart-button" id="restartFromCompletion">Start Again</button>
+    </div>
+  </div>
+</div>
+<script>
+const cards=[
+{id:'event-content',rarity:'SR',stars:'★★★★★',label:'Formal Event Coverage',title:'Event Content Producer',text:'Recorded key moments during the CSSA Dragon Boat Festival formal event.',photo:'assets/event_recording.jpg',weight:12},
+{id:'vc-award',rarity:'SSR',stars:'★★★★★',label:'Academic Recognition',title:'Vice-Chancellor’s Award',text:'Received the Vice-Chancellor’s Award at INTI’s Graduation & Awards Presentation.',photo:'assets/vc_award.jpg',weight:5},
+{id:'video-lead',rarity:'SR',stars:'★★★★',label:'Rehearsal Production',title:'Videography Lead',text:'Took responsibility for filming and recording during activity rehearsals.',photo:'assets/videography_lead.jpg',weight:12},
+{id:'doc-camera',rarity:'R',stars:'★★★★',label:'Technical Learning',title:'Documentary Camera Practice',text:'Learned professional camera operation in a documentary production course.',photo:'assets/camera_training.jpg',weight:22},
+{id:'event-ops',rarity:'SSR',stars:'★★★★',label:'Campus Event Support',title:'Event Operations',text:'Supported the formal CSSA Dragon Boat Festival as a staff member.',photo:'assets/event_staff.jpg',weight:5},
+{id:'on-camera',rarity:'SR',stars:'★★★★',label:'Course Production',title:'On-Camera Production',text:'Collaborated with a creative team on an outdoor shooting project for coursework.',photo:'assets/on_camera.jpg',weight:12},
+{id:'asean-volunteer',rarity:'SSR',stars:'★★★★',label:'Professional Event',title:'ASEAN Tech Summit Volunteer',text:'Assisted participants and provided on-site support at an ASEAN technology summit.',photo:'assets/asean_volunteer.jpg',weight:5},
+{id:'community-service',rarity:'SR',stars:'★★★★',label:'Social Responsibility',title:'Community Service',text:'Helped distribute essential supplies to refugee children during a community activity.',photo:'assets/community_service.jpg',weight:12},
+{id:'team-setup',rarity:'SR',stars:'★★★',label:'Event Preparation',title:'Team Setup',text:'Worked with friends to prepare the venue before the CSSA Dragon Boat Festival.',photo:'assets/team_setup.jpg',weight:12},
+{id:'collab-learning',rarity:'R',stars:'★★★',label:'Peer Learning',title:'Collaborative Learning',text:'Worked with friends to solve problems and complete coursework together.',photo:'assets/collaborative_learning.jpg',weight:22},
+{id:'cross-cultural',rarity:'SR',stars:'★★★',label:'Cultural Engagement',title:'Cross-Cultural Engagement',text:'Participated in a cross-cultural festival and connected with people from different backgrounds.',photo:'assets/cross_cultural.jpg',weight:12},
+{id:'presentation',rarity:'R',stars:'★★★',label:'Academic Communication',title:'Class Presentation',text:'Prepared and delivered a classroom presentation to communicate ideas clearly.',photo:'assets/presentation.jpg',weight:22},
+{id:'authentic-self',rarity:'R',stars:'★★★',label:'Everyday Perspective',title:'Authentic Self',text:'A quiet personal moment that reminds me creativity also grows through reflection.',photo:'assets/everyday.jpg',weight:22}
+];
+const stage=document.querySelector('#stage'),result=document.querySelector('#result'),draw=document.querySelector('#draw'),reset=document.querySelector('#reset'),status=document.querySelector('#status'),collection=document.querySelector('#collection'),count=document.querySelector('#count'),burst=document.querySelector('#burst'),modal=document.querySelector('#modal'),modalcard=document.querySelector('#modalcard'),completion=document.querySelector('#completion'),stacks=[...document.querySelectorAll('.stack')];
+
+// Always start a new visitor with an empty collection.
+localStorage.removeItem('drawMyStoryUnlocked');
+let isDrawing=false,current=null,unlocked=new Set();
+const rc=c=>c.rarity.toLowerCase();
+function markup(c){return `<div class="cardtop"><span class="rarity">${c.rarity} · ${c.label}</span><span class="stars">${c.stars}</span></div><div class="photo"><img src="${c.photo}" alt="${c.title}"><span class="caption">${c.label}</span></div><h2>${c.title}</h2><p>${c.text}</p><span class="proof">REAL EXPERIENCE</span>`}
+function setcard(el,c,res=false,isStack=false){
+  el.className=`card ${rc(c)}${res?' result':''}${isStack?' stack':''}`;
+  el.innerHTML=markup(c);
+}
+function pick(a){let t=a.reduce((s,c)=>s+c.weight,0),n=Math.random()*t;for(const c of a){n-=c.weight;if(n<=0)return c}return a[a.length-1]}
+function progress(n){[1,2,3].forEach(i=>{let e=document.querySelector('#p'+i);e.classList.toggle('active',i===n);e.classList.toggle('done',i<n)});count.textContent=`${unlocked.size} / ${cards.length} stories unlocked`}
+function render(){collection.innerHTML='';cards.forEach(c=>{const open=unlocked.has(c.id),e=document.createElement('div');e.className=`mini ${rc(c)} ${open?'':'locked'}`;e.innerHTML=`<img src="${c.photo}" alt=""><b>${open?c.title:'Locked Story'}</b><span>${open?`${c.rarity} · ${c.label}`:'Draw to unlock'}</span><i>${open?'✦':'🔒'}</i>`;if(open)e.onclick=()=>openmodal(c);collection.appendChild(e)});count.textContent=`${unlocked.size} / ${cards.length} stories unlocked`}
+function particles(c){burst.innerHTML='';let colors=c.rarity==='SSR'?['#fff0bd','#ffd15e','#b8791e','#ffffff']:c.rarity==='SR'?['#ccecff','#61b7ff','#2068bb','#ffffff']:['#ffd8de','#d96879','#7d202f','#ffffff'];for(let i=0;i<55;i++){let p=document.createElement('i');p.className='particle';p.style.left=(46+Math.random()*9)+'%';p.style.top=(43+Math.random()*13)+'%';p.style.background=colors[Math.floor(Math.random()*colors.length)];p.style.setProperty('--tx',(Math.random()*630-315)+'px');p.style.setProperty('--ty',(Math.random()*440-175)+'px');p.style.animationDelay=(Math.random()*.16)+'s';burst.appendChild(p)}}
+function openmodal(c){modalcard.className=`card ${rc(c)}`;modalcard.innerHTML=markup(c);modal.classList.add('show')}
+function showCompletion(){completion.classList.add('show')}
+function resetCollection(){
+  unlocked=new Set();
+  localStorage.removeItem('drawMyStoryUnlocked');
+  stage.className='stage idle';
+  result.className='card result placeholder';
+  result.innerHTML='<div class="mark">✦</div><h2>Ready to Draw?</h2><p>Each card contains a real record of my learning, work, and contribution.</p>';
+  status.textContent='Collection reset. Ready to enter the story pool.';
+  draw.disabled=false;
+  draw.textContent='✦ Start Drawing';
+  progress(1);
+  render();
+}
+function start(){
+  if(isDrawing)return;
+  if(unlocked.size===cards.length){showCompletion();return}
+  isDrawing=true;
+  draw.disabled=true;
+  stage.className='stage drawing';
+  progress(2);
+  status.textContent='Connecting real moments from the story pool…';
+  stacks.forEach((e,i)=>setcard(e,cards[(Math.floor(Math.random()*cards.length)+i)%cards.length],false,true));
+  setTimeout(()=>status.textContent='Generating your experience card…',700);
+  setTimeout(()=>{
+    let remain=cards.filter(c=>!unlocked.has(c.id));
+    current=pick(remain);
+    setcard(result,current,true);
+    particles(current);
+    unlocked.add(current.id);
+    localStorage.setItem('drawMyStoryUnlocked',JSON.stringify([...unlocked]));
+    render();
+    stage.className='stage revealed';
+    status.textContent=`Draw Result: ${current.rarity} · ${current.title}`;
+    progress(3);
+    draw.disabled=false;
+    draw.textContent=unlocked.size===cards.length?'Collection Complete':'Draw Again';
+    isDrawing=false;
+    if(unlocked.size===cards.length){
+      setTimeout(showCompletion,850);
+    }
+  },1600)
+}
+draw.onclick=start;
+reset.onclick=resetCollection;
+result.onclick=()=>{if(current&&stage.classList.contains('revealed'))openmodal(current)};
+document.querySelector('#close').onclick=()=>modal.classList.remove('show');
+modal.onclick=e=>{if(e.target===modal)modal.classList.remove('show')};
+document.querySelector('#closeCompletion').onclick=()=>completion.classList.remove('show');
+document.querySelector('#restartFromCompletion').onclick=()=>{completion.classList.remove('show');resetCollection();window.scrollTo({top:0,behavior:'smooth'})};
+document.querySelector('#viewCollection').onclick=()=>completion.classList.remove('show');
+completion.onclick=e=>{if(e.target===completion)completion.classList.remove('show')};
+render();
+progress(1);
+</script>
+</body>
+</html>
